@@ -78,6 +78,16 @@ for (const post of posts) {
                     </footer>
                 `;
     article.innerHTML = card;
+    const comm = article.querySelector('input');
+    comm.addEventListener('keydown', (event) => {
+        console.log('event: ', event);
+        const key = event.key;
+        const numbers = '0123456789';
+        if (numbers.includes(key)) {
+            event.preventDefault();
+            alert('no numbers allowed!');
+        }
+    });
 
     body.appendChild(article);
 }
@@ -141,3 +151,18 @@ newParagraph.appendChild(span);
 // stergere elemente
 const allCards = document.querySelectorAll('.card');
 allCards[allCards.length - 1].remove();
+
+
+// event listeners
+const interactive = document.getElementById('interactive-text');
+
+const onClick = () => {
+    if (interactive.classList.contains('red')) {
+        interactive.classList.remove('red');
+    } else {
+        interactive.classList.add('red');
+    }
+}
+
+interactive.addEventListener('click', onClick);
+
