@@ -63,7 +63,9 @@ const posts = [
 const body = document.querySelector('body');
 let htmlContent = '';
 for (const post of posts) {
-    const card = `<article class="card">
+    const article = document.createElement('article');
+    article.classList.add('card');
+    const card = `
                     <p>${post.title}</p>
 
                     <ol>
@@ -71,13 +73,15 @@ for (const post of posts) {
                     </ol>
                     <label for="comment">Comment</label>
                     <input type="text" id="comment" name="comment" value="${post.comment}">
-                    <footer></footer>
-                </article>`;
+                    <footer>
+                    <strong>Author:</strong> ${post.author} <span></span>
+                    </footer>
+                `;
+    article.innerHTML = card;
 
-    htmlContent += card;
+    body.appendChild(article);
 }
 
-body.innerHTML = htmlContent;
 // body.textContent = htmlContent;
 
 // innerText vs textContent
@@ -120,3 +124,20 @@ for(const paragraph of allP) {
 for(const paragraph of allP) {
     paragraph.style.textTransform = 'uppercase';
 }
+
+
+// creare de elemente HTML
+const newParagraph = document.createElement('p');
+newParagraph.textContent = 'My new paragraph';
+console.log(newParagraph);
+
+body.appendChild(newParagraph);
+
+const span = document.createElement('span');
+span.textContent = ' altceva';
+span.classList.add('red');
+newParagraph.appendChild(span);
+
+// stergere elemente
+const allCards = document.querySelectorAll('.card');
+allCards[allCards.length - 1].remove();
